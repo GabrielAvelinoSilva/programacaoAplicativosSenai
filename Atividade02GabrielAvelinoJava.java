@@ -1,8 +1,9 @@
+
 package atividade02gabrielavelino.java;
 
 import java.util.Scanner;
 
-public class Atividade02GabrielAvelinoJava {
+public class Atividade02GabrielAvelino {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
@@ -73,10 +74,13 @@ public class Atividade02GabrielAvelinoJava {
         System.out.print("Insira o 2º valor: ");
         j2 = scanner.nextInt();
         
-        a = (j1 + j2)/n;
+        s = (j1 + j2)/n;
         System.out.print("A média e: "+ s);
-       
+        
+        System.out.print("N maior é "+ Math.max(j1, j2));
+        System.out.print("N menor é "+ Math.min(j1, j2));
         
         
     }
 }
+
