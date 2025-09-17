@@ -45,8 +45,37 @@ public class Atividade02GabrielAvelinoJava {
 
         // 4 
         // a)
+        /* System.out.print("Valor em Reais: ");
+        double reais = scanner.nextDouble();
         
+        double dolar = 5.30;
+        System.out.print("\"Cotacao do Dolar: " +  dolar + "\"");
         
+        double qtdRD = Math.floor(reais / dolar);
+        
+        System.out.print("\"Pode Comprar " + qtdRD + " Dolares. " + "\"");
+        
+        // b)
+        
+        double troco = reais - (dolar * qtdRD);
+        
+        System.out.print("\"Troco: " + troco + "\""); */
+        
+        //5 
+        
+        int n, j1,j2,s;
+        System.out.print("Insira a quantidade de jogadas");
+        n = scanner.nextInt();
+        
+        System.out.print ("Insiza o 1º valor: ");
+        j1 = scanner.nextInt();
+        
+        System.out.print("Insira o 2º valor: ");
+        j2 = scanner.nextInt();
+        
+        a = (j1 + j2)/n;
+        System.out.print("A média e: "+ s);
+       
         
         
     }
