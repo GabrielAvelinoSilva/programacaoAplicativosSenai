@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Atividade03GabrielAvelinoJava {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // 1
+        
+        /*
+        System.out.print("Qtd desejada de porcoes: ");
+        int p = scanner.nextInt();
+        
+        double acucar = p * 200;
+        
+        System.out.print("Qtd. de Acucar necessario: "+ acucar); 
+        */
+        
+        // 2
+        
+        /*
+        System.out.print("Qtd. de Impressoras: ");
+        int n = scanner.nextInt();
+        
+        double calculo = n * 12;
+        
+        System.out.print("Com "+ n +" Impressoras, Imprime 180 paginas em " + calculo + " Minutos");
+        */
+        
+        // 3
+        
+        /*
+        System.out.print("Distância: ");
+        double d = scanner.nextDouble();
+        
+        double ln = d * 0.075;
+        
+        System.out.print("Para percorrer "+d+" Km, precisa de "+ln+" L");
+        */
+        
+        // 4
+        
+        /*
+        System.out.print("Qtd. de Maquinas: ");
+        int m = scanner.nextInt();
+        
+        System.out.print("Tempo (h): ");
+        double t = scanner.nextDouble();
+        
+        double p = 30 * m * t;
+        
+        System.out.print(m +" Maquinas produzem "+p+" Pecas em "+t+"h");
+        */
+        
+        // 5
+        
+        /*
+        System.out.print("Cotacao do Dolar: ");
+        double c = scanner.nextDouble();
+        
+        System.out.print("Dolares: ");
+        double d = scanner.nextDouble();
+        
+        double r = c * d;
+                
+        System.out.print("Para comprar "+d+ " Dolares, com a cotacao de "+c+ ", precisa de R$"+ r );
+        */
+        
+        // 6
+        System.out.print("a: ");
+        double a = scanner.nextDouble();
+        
+        System.out.print("b: ");
+        double b = scanner.nextDouble();
+
+        double x = -b / a;
+        double res = (a*x) + b
+    }
+}
