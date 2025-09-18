@@ -97,6 +97,7 @@ public class Atividade03GabrielAvelinoJava {
         
         // 8
         
+        /*
         System.out.print("x1: ");
         double x1 = scanner.nextDouble();
         
@@ -111,10 +112,107 @@ public class Atividade03GabrielAvelinoJava {
         
         double m = (y2 - y1) / (x2 - x1);
         double b = y1 - m*x1;
+        double y = m * x1 + b;
         
         System.out.print("y = m * x + b");
-        System.out.print("y = "+m+" * "+x+" + b");
+        System.out.print("y = "+m+" * "+x1+" + "+b);
+        System.out.print("y = "+y);
+        */
         
-    
+        // 9
+        /*
+        System.out.print("m1: ");
+        double m1 = scanner.nextDouble();
+        
+        System.out.print("m2: ");
+        double m2 = scanner.nextDouble();
+        
+        System.out.print("b1: ");
+        double b1 = scanner.nextDouble();
+        
+        System.out.print("b2: ");
+        double b2 = scanner.nextDouble();
+        
+        double x = (b2 - b1) / (m1 - m2);
+        double y = m1*x + b1;
+        
+        System.out.print("x = "+x+ ", y = "+y);
+        */
+        
+        // 10
+        /*
+        System.out.print("a: ");
+        double a = scanner.nextDouble();
+        
+        System.out.print("b: ");
+        double b = scanner.nextDouble();
+        
+        System.out.print("c: ");
+        double c = scanner.nextDouble();
+        
+        double Δ = Math.pow(b, 2) - 4*(a*c);
+        double x1 = (-b + Math.sqrt(Δ)) / (2*a);
+        double x2 = (-b - Math.sqrt(Δ)) / (2*a);
+        
+        System.out.print("Δ = " +Δ+ ", x1 = "+x1+", x2 = "+x2);
+        */
+        
+        // 11
+        /*
+        System.out.print("Δ: ");
+        double Δ = scanner.nextDouble();
+        
+        System.out.print("a: ");
+        double a = scanner.nextDouble();
+        
+        double d = Math.abs( (Math.sqrt(Δ)) / a );
+        
+        System.out.print("d = "+d);
+        */
+        
+        // 12
+        /*
+        System.out.print("a: ");
+        double a = scanner.nextDouble();
+        
+        System.out.print("b: ");
+        double b = scanner.nextDouble();
+        
+        System.out.print("c: ");
+        double c = scanner.nextDouble();
+        
+        System.out.print("x0: ");
+        double x0 = scanner.nextDouble();
+        
+        double fx0 = a*(Math.pow(x0, 2)) + b*x0 + c;
+        double fix0 = 2*a*x0 + b;
+        
+        System.out.print("f(x0) = a*x0^2 + b*x0 + c");
+        System.out.print("f(x0) = "+fx0);
+        
+        System.out.print("f’(x0) = 2*a*x0 + b");
+        System.out.print("f'(x0) = "+fix0);
+        */
+        
+        // 13
+        
+        System.out.print("m: ");
+        double m = scanner.nextDouble();
+        
+        System.out.print("b: ");
+        double b = scanner.nextDouble();
+        
+        System.out.print("x1: ");
+        double x1 = scanner.nextDouble();
+        
+        System.out.print("x2: ");
+        double x2 = scanner.nextDouble();
+        
+        double y1 = m*x1 + b;
+        double y2 = m*x2 + b;
+        double A = ((y1 + y2)/2) * (x2 - x1);
+        
+        System.out.print("A = "+A);
+        
     }
 }
