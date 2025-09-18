@@ -66,6 +66,7 @@ public class Atividade03GabrielAvelinoJava {
         */
         
         // 6
+        /*
         System.out.print("a: ");
         double a = scanner.nextDouble();
         
@@ -73,6 +74,47 @@ public class Atividade03GabrielAvelinoJava {
         double b = scanner.nextDouble();
 
         double x = -b / a;
-        double res = (a*x) + b
+        
+        System.out.print("X = "+x);
+        */
+        
+        // 7
+        
+        /*
+        System.out.print("m: ");
+        double m = scanner.nextDouble();
+        
+        System.out.print("b: ");
+        double b = scanner.nextDouble();
+
+        System.out.print("x0: ");
+        double x0 = scanner.nextDouble();
+        
+        double y0 = m * x0 + b;
+        
+        System.out.print("Y0: "+yo);
+        */
+        
+        // 8
+        
+        System.out.print("x1: ");
+        double x1 = scanner.nextDouble();
+        
+        System.out.print("x2: ");
+        double x2 = scanner.nextDouble();
+        
+        System.out.print("y1: ");
+        double y1 = scanner.nextDouble();
+        
+        System.out.print("y2: ");
+        double y2 = scanner.nextDouble();
+        
+        double m = (y2 - y1) / (x2 - x1);
+        double b = y1 - m*x1;
+        
+        System.out.print("y = m * x + b");
+        System.out.print("y = "+m+" * "+x+" + b");
+        
+    
     }
 }
