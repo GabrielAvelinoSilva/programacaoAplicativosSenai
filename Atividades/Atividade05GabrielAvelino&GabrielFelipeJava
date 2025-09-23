@@ -135,6 +135,96 @@ public class Atividade05GabrielAvelinoJava {
         */
         
         // 7
+        /*
+        System.out.println("N: ");
+        int n = scanner.nextInt(); 
         
+        int d = 2;
+        boolean primo = true;
+        
+        if (n >= 2) {
+            while (d * d <= n) {
+                if (n % d == 0) {
+                    primo = false;
+                    break;
+                }
+                d++;
+            }
+            
+            if (primo) {
+                System.out.println(n + " e primo.");
+            } else {
+                System.out.println(n + " nao e primo.");
+            }
+        } else {
+            System.out.println("Valor Invalido (menor que 2).");
+        }
+        */
+        
+        // 8
+        
+        /*
+        System.out.print("Adicione um Numero Positivo (Negativo para encerrar): ");
+        int n = scanner.nextInt();
+        
+        int soma = 0;
+        while (n >= 0) {
+            soma += n;
+            System.out.print("+ ");
+            n = scanner.nextInt();
+        }
+        System.out.print("Soma = " + soma);
+        */
+        
+        // 9 
+        // a)
+        
+        /*
+        System.out.print("Adicione um Numero: ");
+        int n = scanner.nextInt();
+        
+        int qtdD = 0;
+        
+        while (n > 0) {
+            qtdD++;
+            n /= 10;
+        }
+        System.out.print("Qtd. de Digitos: "+ qtdD);
+        */
+        
+        // b)
+        /*
+        System.out.print("Adicione um Numero: ");
+        int n = scanner.nextInt();
+        
+        int somaD = 0;
+        
+        while (n > 0) {
+            int D = n % 10;
+            somaD += D;
+            n /= 10;
+        }
+        System.out.print("Soma de Digitos: "+ somaD);
+        */
+        
+        // c)
+        
+        // eta
+        
+        // 10
+        /*
+        System.out.print("Adicione um Numero: ");
+        int n = scanner.nextInt();
+        
+        while (n > 1) {
+            if (n % 2 == 0) {
+                n = n/2;
+                System.out.println(n);
+            } else {
+                n = 3*n + 1;
+                System.out.println(n);
+            }
+        }
+        */
     }
 }
