@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class FibonacciLimite {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um número inteiro maior que 0: ");
+        int n = scanner.nextInt();
+
+        int a = 0; // primeiro termo
+        int b = 1; // segundo termo
+
+        System.out.print("Sequência de Fibonacci até " + n + ": ");
+
+        // imprime os termos iniciais
+        System.out.print(a + " ");
+        if (b <= n) {
+            System.out.print(b + " ");
+        }
+
+        int proximo = a + b;
+        while (proximo <= n) {
+            System.out.print(proximo + " ");
+            a = b;
+            b = proximo;
+            proximo = a + b;
+        }
+
+        scanner.close();
+    }
+}
