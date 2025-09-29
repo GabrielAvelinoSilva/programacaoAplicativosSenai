@@ -1,0 +1,160 @@
+import java.util.Scanner;
+
+public class Atividade06GabrielAvelinoJava {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 1
+
+        /*
+        double nota;
+        do {
+            System.out.print("Digite uma nota (0 a 10): ");
+            nota = scanner.nextDouble();
+            if (nota < 0 || nota > 10) {
+                System.out.println("Valor inválido! Tente novamente.");
+            }
+        } while (nota < 0 || nota > 10);
+        System.out.println("Nota válida: " + nota);
+        */
+
+        // 2
+        /*
+
+        int num, soma = 0, qtd = 0;
+        do {
+            System.out.print("Digite um número (0 encerra): ");
+            num = scanner.nextInt();
+            if (num != 0) {
+                soma += num;
+                qtd++;
+            }
+        } while (num != 0);
+
+        if (qtd > 0) {
+            double media = (double) soma / qtd;
+            System.out.println("Soma: " + soma + " | Quantidade: " + qtd + " | Média: " + media);
+        } else {
+            System.out.println("Nenhum número válido digitado.");
+        }
+         */
+
+        // 3
+
+        /*
+        int secreto = (int)(Math.random() * 100) + 1;
+        int palpite, tentativas = 0;
+
+        do {
+            System.out.print("Palpite: ");
+            palpite = scanner.nextInt();
+            tentativas++;
+            if (palpite > secreto) {
+                System.out.println("Muito alto!");
+            } else if (palpite < secreto) {
+                System.out.println("Muito baixo!");
+            }
+        } while (palpite != secreto);
+
+        System.out.println("Acertou em " + tentativas + " tentativas!");
+
+         */
+
+        // 4
+        /*
+        String repetir;
+
+        do {
+            int n;
+            do {
+                System.out.print("Digite N (>0): ");
+                n = scanner.nextInt();
+                if (n <= 0) System.out.println("Valor inválido. Tente novamente.");
+            } while (n <= 0);
+
+            for (int i = n; i >= 0; i--) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+
+            System.out.print("Repetir? (s/n): ");
+            repetir = scanner.next();
+        } while (repetir.equalsIgnoreCase("s"));
+
+         */
+
+        // 5
+        /*
+
+        String senhaCorreta = "senai123";
+        int tentativas = 3;
+        String senha;
+
+        do {
+            System.out.print("Senha: ");
+            senha = scanner.next();
+            tentativas--;
+            if (senha.equals(senhaCorreta)) {
+                System.out.println("Acesso concedido.");
+                return;
+            } else if (tentativas > 0) {
+                System.out.println("Incorreta. Tentativas restantes: " + tentativas);
+            }
+        } while (tentativas > 0);
+
+        System.out.println("Conta bloqueada.");
+
+         */
+
+        // 6
+
+        System.out.print("Digite um número: ");
+        int n = scanner.nextInt();
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n + " x " + i + " = " + (n * i));
+        }
+
+        // 7
+        /*
+        int n;
+        do {
+            System.out.print("Digite N (>0): ");
+            n = scanner.nextInt();
+        } while (n <= 0);
+
+        int somaPares = 0, somaImpares = 0;
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 0) somaPares += i;
+            else somaImpares += i;
+        }
+
+        System.out.println("Soma dos pares: " + somaPares);
+        System.out.println("Soma dos ímpares: " + somaImpares);
+
+         */
+
+        // 8
+        /*
+        int n;
+        do {
+            System.out.print("Digite N (>1): ");
+            n = scanner.nextInt();
+        } while (n <= 1);
+
+        for (int k = 2; k <= n; k++) {
+            boolean primo = true;
+            for (int i = 2; i <= Math.sqrt(k); i++) {
+                if (k % i == 0) {
+                    primo = false;
+                    break;
+                }
+            }
+            if (primo) System.out.print(k + " ");
+
+         */
+
+
+
+    }
+}
