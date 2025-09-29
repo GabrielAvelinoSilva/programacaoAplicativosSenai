@@ -1,0 +1,205 @@
+import java.util.Scanner;
+
+public class Atividade07GabrielAvelinoJava {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 1
+        /*
+
+        int[][] matriz = new int[4][4];
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print("Digite o valor para [" + i + "][" + j + "]: ");
+                matriz[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("\nMatriz 4x4:");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(matriz[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        
+         */
+
+        // 2
+        /*
+
+        int[] numeros = new int[8];
+
+        for (int i = 0; i < 8; i++) {
+            System.out.print("Digite o número " + (i+1) + ": ");
+            numeros[i] = scanner.nextInt();
+        }
+
+        int maior = numeros[0];
+        int pos = 0;
+        for (int i = 1; i < 8; i++) {
+            if (numeros[i] > maior) {
+                maior = numeros[i];
+                pos = i;
+            }
+        }
+
+        System.out.println("Maior valor: " + maior + " na posição " + pos);
+         */
+
+        // 3
+        /*
+
+        int[] vet1 = new int[5];
+        int[] vet2 = new int[5];
+
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Digite o valor " + (i+1) + ": ");
+            vet1[i] = scanner.nextInt();
+        }
+
+        // cópia
+        for (int i = 0; i < 5; i++) {
+            vet2[i] = vet1[i];
+        }
+
+        System.out.print("Vetor 1: ");
+        for (int v : vet1) System.out.print(v + " ");
+        System.out.print("\nVetor 2: ");
+        for (int v : vet2) System.out.print(v + " ");
+        
+         */
+
+        // 4
+        /*
+
+        double[] numeros = new double[20];
+        double soma = 0;
+
+        for (int i = 0; i < 20; i++) {
+            System.out.print("Digite o número " + (i+1) + ": ");
+            numeros[i] = scanner.nextDouble();
+            soma += numeros[i];
+        }
+
+        double media = soma / 20;
+        System.out.println("\nMédia = " + media);
+        System.out.println("Valores menores que a média:");
+        for (double num : numeros) {
+            if (num < media) System.out.println(num);
+        }
+        
+         */
+
+        // 5
+        /*
+
+        String senha;
+        boolean valida;
+
+        do {
+            System.out.print("Digite a senha: ");
+            senha = scanner.nextLine();
+            valida = true;
+
+            if (senha.length() < 8) {
+                System.out.println("Senha inválida: mínimo 8 caracteres.");
+                valida = false;
+            }
+
+            boolean temDigito = false;
+            for (int i = 0; i < senha.length(); i++) {
+                if (senha.charAt(i) >= '0' && senha.charAt(i) <= '9') {
+                    temDigito = true;
+                    break;
+                }
+            }
+            if (!temDigito) {
+                System.out.println("Senha inválida: falta dígito.");
+                valida = false;
+            }
+        } while (!valida);
+
+        System.out.println("Senha válida!");
+        
+         */
+
+        // 6
+        /*
+
+        System.out.print("Digite uma frase: ");
+        String frase = scanner.nextLine();
+
+        int vogais = 0, consoantes = 0, espacos = 0, outros = 0;
+
+        for (int i = 0; i < frase.length(); i++) {
+            char c = Character.toLowerCase(frase.charAt(i));
+            if ("aeiou".indexOf(c) >= 0) {
+                vogais++;
+            } else if (c >= 'a' && c <= 'z') {
+                consoantes++;
+            } else if (c == ' ') {
+                espacos++;
+            } else {
+                outros++;
+            }
+        }
+
+        System.out.println("Vogais: " + vogais);
+        System.out.println("Consoantes: " + consoantes);
+        System.out.println("Espaços: " + espacos);
+        System.out.println("Outros: " + outros);
+        
+         */
+
+        // 7
+        /*
+
+        System.out.print("Digite o texto: ");
+        String texto = scanner.nextLine();
+        System.out.print("Digite a palavra: ");
+        String palavra = scanner.nextLine();
+
+        int inicio = 0, pos, cont = 0;
+
+        while ((pos = texto.indexOf(palavra, inicio)) != -1) {
+            cont++;
+            inicio = pos + 1;
+        }
+
+        if (cont > 0)
+            System.out.println("A palavra aparece " + cont + " vezes.");
+        else
+            System.out.println("A palavra não foi encontrada.");
+            
+         */
+
+        // 8
+
+        /*
+        System.out.print("Cadastre o nome de usuário: ");
+        String cadastrado = scanner.nextLine();
+
+        int tentativas = 3;
+        String login;
+        do {
+            System.out.print("Digite o login: ");
+            login = scanner.nextLine();
+            if (login.equals(cadastrado)) {
+                System.out.println("Acesso concedido.");
+                return;
+            } else {
+                tentativas--;
+                if (tentativas > 0) {
+                    System.out.println("Acesso negado – tentativas restantes: " + tentativas);
+                }
+            }
+        } while (tentativas > 0);
+
+        System.out.println("Conta bloqueada.");
+        
+         */
+        
+    }
+}
