@@ -1,0 +1,107 @@
+package com.mycompany.desafiojavaavelinofelipe;
+
+import java.util.Scanner;
+
+
+public class DesafioJavaAvelinoFelipe {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Armazenamento de Dados
+        
+        double saldoReais = 100;
+        double saldoDolares = 0;
+        
+        // Menu
+        
+        boolean menu = true;
+        
+        while (menu) {
+        System.out.println("\n=== CAIXA RAPIDO ===");
+        System.out.println("1 - Saldo");
+        System.out.println("2 - Deposito");
+        System.out.println("3 - Extrato");
+        System.out.println("4 - Simular Emprestimo");
+        System.out.println("5 - Comprar Dolar");
+        System.out.println("0 - Sair");
+        
+        System.out.print("\nEscolha: ");
+        int opcao = scanner.nextInt();
+        
+    do {  
+        switch (opcao) {
+                case 1 -> { 
+                    boolean saldo = true;
+                    while (saldo) {
+                        System.out.print("\n=== SALDO ===");
+                        System.out.printf("\nSaldo em Reais: R$%.2f", saldoReais);
+                        System.out.printf("\nSaldo em Dolares: US$%.2f", saldoDolares, "\n");
+
+                        System.out.println("\nDeseja voltar ao menu inicial (V) ou encerrar o programa (E)? ");
+                        System.out.println("\nEscolha: ");
+                        String opcao1 = scanner.nextLine();
+                        switch (opcao1) {
+                            case "V" -> saldo = false;
+                            case "E" -> {
+                                System.out.println("Encerrando o Atendimento. Obrigado por utilizar o Caixa Rapido.");
+                                saldo = false;
+                                menu = false;
+                            }
+                            default -> System.out.println("Opcao Invalida.");
+                            
+                        }
+                    }
+                    break;
+                }
+                case 2 -> {
+                    boolean vardeposito = true;
+                    while (vardeposito) {
+                    System.out.println("=== DEPOSITO ===");
+                    System.out.println("Informe o valor do deposito: ");
+                    double deposito = scanner.nextDouble();
+                    
+                    if (deposito < 0 || deposito > 5000 ){
+                        System.out.println("!!!VALOR INVALIDO!!!");
+                        System.out.println("Informe um valor MAIOR que 0,00 e menor ou igual a  5.000,00  ");
+                    } else {
+                        saldoReais = saldoReais + deposito;
+                        System.out.println("Deposito realizado com sucesso!");
+                    }
+                    
+                    System.out.println("\nDeseja voltar ao menu inicial (V) ou encerrar o programa (E)? ");
+                    System.out.println("\nEscolha: ");
+                    String opcao1 = scanner.nextLine();
+                        
+                    switch (opcao1) {
+                        case "V" -> vardeposito = false;
+                        case "E" -> {
+                            System.out.println("Encerrando o Atendimento. Obrigado por utilizar o Caixa Rapido.");
+                            vardeposito = false;
+                            menu = false;
+                        }
+                        default -> System.out.println("Opcao Invalida.");
+                        }
+                    }
+                }
+                case 3 -> {
+                    System.out.println("=== CAIXA RAPIDO ==="); 
+                }
+                case 4 -> {
+                    System.out.println("=== CAIXA RAPIDO ===");
+                }
+                case 5 -> {
+                    System.out.println("=== CAIXA RAPIDO ===");
+                }
+                case 0 -> {
+                    System.out.println("Encerrando o Atendimento. Obrigado por utilizar o Caixa Rapido.");
+                    menu = false; 
+                }
+                default -> {
+                    System.out.println("Opcao Invalida.");
+                     
+                }
+            }
+        }
+    }while();
+}
+}
