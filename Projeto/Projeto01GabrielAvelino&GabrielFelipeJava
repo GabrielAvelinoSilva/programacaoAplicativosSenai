@@ -28,7 +28,8 @@ public class DesafioJavaAvelinoFelipe {
         System.out.print("\nEscolha: ");
         int opcao = scanner.nextInt();
         
-    do {  
+        // Opções 
+        
         switch (opcao) {
                 case 1 -> { 
                     boolean saldo = true;
@@ -38,8 +39,9 @@ public class DesafioJavaAvelinoFelipe {
                         System.out.printf("\nSaldo em Dolares: US$%.2f", saldoDolares, "\n");
 
                         System.out.println("\nDeseja voltar ao menu inicial (V) ou encerrar o programa (E)? ");
-                        System.out.println("\nEscolha: ");
+                        System.out.print("\nEscolha: ");
                         String opcao1 = scanner.nextLine();
+                        scanner.nextLine();
                         switch (opcao1) {
                             case "V" -> saldo = false;
                             case "E" -> {
@@ -56,31 +58,32 @@ public class DesafioJavaAvelinoFelipe {
                 case 2 -> {
                     boolean vardeposito = true;
                     while (vardeposito) {
-                    System.out.println("=== DEPOSITO ===");
-                    System.out.println("Informe o valor do deposito: ");
-                    double deposito = scanner.nextDouble();
-                    
-                    if (deposito < 0 || deposito > 5000 ){
-                        System.out.println("!!!VALOR INVALIDO!!!");
-                        System.out.println("Informe um valor MAIOR que 0,00 e menor ou igual a  5.000,00  ");
-                    } else {
-                        saldoReais = saldoReais + deposito;
-                        System.out.println("Deposito realizado com sucesso!");
-                    }
-                    
-                    System.out.println("\nDeseja voltar ao menu inicial (V) ou encerrar o programa (E)? ");
-                    System.out.println("\nEscolha: ");
-                    String opcao1 = scanner.nextLine();
-                        
-                    switch (opcao1) {
-                        case "V" -> vardeposito = false;
-                        case "E" -> {
-                            System.out.println("Encerrando o Atendimento. Obrigado por utilizar o Caixa Rapido.");
-                            vardeposito = false;
-                            menu = false;
+                        System.out.println("=== DEPOSITO ===");
+                        System.out.print("Informe o valor do deposito: ");
+                        double deposito = scanner.nextDouble();
+                        scanner.nextLine();
+
+                        if (deposito < 0 || deposito > 5000 ){
+                            System.out.println("!!!VALOR INVALIDO!!!");
+                            System.out.println("Informe um valor MAIOR que 0,00 e menor ou igual a  5.000,00  ");
+                        } else {
+                            saldoReais = saldoReais + deposito;
+                            System.out.println("Deposito realizado com sucesso!");
                         }
-                        default -> System.out.println("Opcao Invalida.");
-                        }
+                            
+                        System.out.println("\nDeseja voltar ao menu inicial (V) ou encerrar o programa (E)? ");
+                        System.out.print("\nEscolha: ");
+                        String opcao2 = scanner.nextLine();
+
+                        switch (opcao2) {
+                            case "V" -> vardeposito = false;
+                            case "E" -> {
+                                System.out.println("Encerrando o Atendimento. Obrigado por utilizar o Caixa Rapido.");
+                                vardeposito = false;
+                                menu = false;
+                            }
+                            default -> System.out.println("Opcao Invalida.");
+                            }
                     }
                 }
                 case 3 -> {
@@ -102,6 +105,5 @@ public class DesafioJavaAvelinoFelipe {
                 }
             }
         }
-    }while();
-}
+    }
 }
