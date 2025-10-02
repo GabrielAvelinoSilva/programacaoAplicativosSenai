@@ -1,18 +1,28 @@
 package com.mycompany.desafiojavaavelinofelipe;
 
 import java.util.Scanner;
+import java.util.Random;
 
 
 public class DesafioJavaAvelinoFelipe {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
         
-            int opc9 = 0;      
-// Armazenamento de Dados
+        String[]descricao = new String[10];        
+        Double[] extrato = new Double[10];       
+                    int opc9 = 0;    
+                    int cnt = 0 ; 
+                    int proximo = 0 ; 
+        // Armazenamento de Dados
+
+        int qtdDeposito = 0;
+
        do{    
              
             double saldoReais = 100;
             double saldoDolares = 0;
+            int[] opcParcela = {6, 12, 18, 24, 30, 36, 40, 48, 56, 60, 72};
 
 
             // Menu
@@ -72,8 +82,14 @@ public class DesafioJavaAvelinoFelipe {
                                 System.out.println("!!!VALOR INVALIDO!!!");
                                 System.out.println("Informe um valor MAIOR que 0,00 e menor ou igual a  5.000,00  ");
                             } else {
+                                qtdDeposito++;
                                 saldoReais = saldoReais + deposito;
+                                descricao[proximo]= "Deposito (+)";
+                                extrato[proximo] = deposito;
                                 System.out.println("Deposito realizado com sucesso!");
+                            }
+                            if (cnt < 10 ){
+                                cnt++;
                             }
 
                             System.out.println("\nDeseja voltar ao menu inicial (V) ou encerrar o programa (E)? ");
@@ -92,10 +108,78 @@ public class DesafioJavaAvelinoFelipe {
                         }
                     }
                     case 3 -> {
-                        System.out.println("=== CAIXA RAPIDO ==="); 
+                        System.out.println("=== CAIXA RAPIDO ===");
+                        
+                        if(cnt == 0){
+                            System.out.println("Não a movimentações ainda !");
+                        }else {
+                            for (int i = 0 ; i < qtdDeposito;i++){
+                                System.out.println("Seus mocimentos são :");
+                                System.out.println(descricao[i]); 
+                                System.out.println(extrato[i]); 
+                            }   
+                            
+                        }
+                        
                     }
                     case 4 -> {
-                        System.out.println("=== CAIXA RAPIDO ===");
+                        boolean simEmprestimo = true;
+                        
+                        while (simEmprestimo) {
+                            System.out.println("\n=== SIMULAR EMPRESTIMO ===");
+                            System.out.print("Informe o valor do emprestimo: R$");
+                            double emprestimo = scanner.nextDouble();
+                            scanner.nextLine();
+                          
+                            if (emprestimo < 200 || emprestimo > 100000) {
+                                System.out.print("Valor Invalido");
+                                return;
+                            } else {
+                                System.out.print("Informe o seu salario bruto: R$");
+                                double salarioBruto = scanner.nextDouble();
+                                scanner.nextLine();
+                                
+                                System.out.print("Informe a qtd. desejada de parcelas (6, 12, 18, 24, 30, 36, 40, 48, 56, 60 ou 72): ");
+                                int qtdParcelas = scanner.nextInt();
+                                scanner.nextLine();
+                                
+                                boolean parValido = false;
+                                
+                                for (int i = 0; i < opcParcela.length; i++) {
+                                    if (opcParcela[i] == qtdParcelas) {
+                                        parValido = true;
+                                        break;
+                                    }
+                                }
+                                if (parValido) {
+                                    double parcela, valorTotal;
+                                    
+                                    parcela = emprestimo / qtdParcelas;
+                                    int EM = 10000 + random.nextInt(90000);
+                                    
+                                    valorTotal = (parcela * qtdParcelas) + (parcela * 0.02);
+                                    
+                                    if (parcela > salarioBruto * 0.3) {
+                                            System.out.print("Emprestimo indisponivel.");
+                                    } else {
+                                        
+                                        
+                                        
+                                        System.out.println("Valor da Parcela: R$"+parcela+" x "+qtdParcelas);
+                                        System.out.println("Valor do Empréstimo: R$"+emprestimo);
+                                        System.out.println("Valor Total do Empréstimo a ser pago: R$"+valorTotal);
+                                        
+                                        
+                                        System.out.println("Empréstimo disponivel, entre em contato com a central e informe o numero de protocolo EM"+EM);
+                                        break;
+                                    }
+                                    
+                                } else {
+                                    System.out.println("Qtd. de Parcelas Invalidas.");
+                                }
+                            }
+                            
+                        }
                     }
                     case 5 -> {
                         System.out.println("=== CAIXA RAPIDO ===");
