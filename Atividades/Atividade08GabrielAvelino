@@ -1,0 +1,306 @@
+package com.mycompany.avelinoatividades;
+
+import java.util.Scanner;
+
+public class Atividade08GabrielAvelinoJava {
+    
+    // Funçoes e Metodos
+    
+    // 01.
+    
+    /*
+        public double calcularDelta(double a, double b, double c) {
+        double delta = (b * b) - (4 * a * c);
+        return delta;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Dada a equação de 2º grau: ax² + bx + c = 0");
+        System.out.println("Calcule o valor de x1 e x2 e mostre o resultado na tela.");
+
+        System.out.print("\nDigite o valor de A: ");
+        double a = scanner.nextDouble();
+
+        System.out.print("Digite o valor de B: ");
+        double b = scanner.nextDouble();
+
+        System.out.print("Digite o valor de C: ");
+        double c = scanner.nextDouble();
+
+        // Criação do objeto da classe
+        Atividade08GabrielAvelinoJava equacao = new Atividade08GabrielAvelinoJava();
+
+        // Cálculo do delta usando o método
+        double delta = equacao.calcularDelta(a, b, c);
+
+        System.out.printf("\nO valor de Δ (delta) é: %.2f\n", delta);
+        
+        scanner.close();
+    }
+
+    */
+    
+    // 02.
+    
+    /*
+    public double soma(double x1, double x2) {
+        double resultado = x1 + x2;
+        return resultado;
+    }
+    
+    public double subtracao(double x1, double x2) {
+        double resultado = x1 - x2;
+        return resultado;
+    }
+    
+    public double multiplicacao(double x1, double x2) {
+        double resultado = x1 * x2;
+        return resultado;
+    }
+    
+    public double divisao(double x1, double x2) {
+        double resultado = x1 / x2;
+        return resultado;
+    }
+    
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("=== Menu ===");
+        System.out.println("1. Soma");
+        System.out.println("2. Subtração");
+        System.out.println("3. Multiplicação");
+        System.out.println("4. Divisão");
+        
+        System.out.print("Escolha: ");
+        int escolha = scanner.nextInt();
+        
+        System.out.print("Primeiro Valor: ");
+        double x1 = scanner.nextDouble();
+        
+        switch (escolha) {
+            case 1 -> System.out.println("+");
+            case 2 -> System.out.println("-");
+            case 3 -> System.out.println("x");
+            case 4 -> System.out.println("/");
+        }
+        
+        System.out.print("Segundo Valor: ");
+        double x2 = scanner.nextDouble();
+        
+        Atividade08GabrielAvelinoJava calculo = new Atividade08GabrielAvelinoJava();
+        
+        double resultado = 0;
+        
+        switch (escolha) {
+            case 1 -> resultado = resultado + calculo.soma(x1, x2);
+            case 2 -> resultado = resultado + calculo.subtracao(x1, x2);
+            case 3 -> resultado = resultado + calculo.multiplicacao(x1, x2);
+            case 4 -> resultado = resultado + calculo.divisao(x1, x2);     
+        }
+        
+        switch (escolha) {
+            case 1 -> System.out.print("Soma = " + resultado);
+            case 2 -> System.out.print("Subtracao = " + resultado);
+            case 3 -> System.out.print("Multiplicacao = " + resultado);
+            case 4 -> System.out.print("Divisao = " + resultado);
+            default -> System.out.print("Opcao Invalida.");
+        }
+    }
+    */
+    
+    // 3. 
+    
+    // a)
+    /*
+    public String mes(int numMes) {
+        String nomeMes;
+        switch (numMes) {
+            case 1 -> nomeMes = "Janeiro";
+            case 2 -> nomeMes = "Fevereiro";
+            case 3 -> nomeMes = "Marco";
+            case 4 -> nomeMes = "Abril";
+            case 5 -> nomeMes = "Maio";
+            case 6 -> nomeMes = "Junho";
+            case 7 -> nomeMes = "Julho";
+            case 8 -> nomeMes = "Agosto";
+            case 9 -> nomeMes = "Setembro";
+            case 10 -> nomeMes = "Outubro";
+            case 11 -> nomeMes = "Novembro";
+            case 12 -> nomeMes = "Dezembro";
+            default -> nomeMes = "Mes Invalido! ";
+        }
+        return nomeMes;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Numero do Mes: ");
+        int numMes = scanner.nextInt();
+        
+        Atividade08GabrielAvelinoJava mes = new Atividade08GabrielAvelinoJava();
+        
+        System.out.printf("Mes %d: %s ", numMes, mes.mes(numMes));
+    }
+    */
+    // b)
+    /*
+    public String mes(int numMes) {
+        String[] nomesMeses = {
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "JOutubro", "Novembro", "Dezembro"
+        };
+        
+        String nomeMes = nomesMeses[numMes];
+        
+        return nomeMes;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Numero do Mes: ");
+        int numMes = scanner.nextInt() - 1;
+        
+        Atividade08GabrielAvelinoJava mes = new Atividade08GabrielAvelinoJava();
+        
+        System.out.printf("Mes %d: %s ", numMes + 1, mes.mes(numMes));
+    }
+    */
+    
+    // 04.
+    
+    /*
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Quantos funcionários a empresa possui? ");
+        int quantidade = scanner.nextInt();
+
+        double[] salarios = new double[quantidade];
+        double soma = 0;
+
+        for (int i = 0; i < quantidade; i++) {
+            System.out.print("Salário do funcionário " + (i + 1) + ": ");
+            salarios[i] = scanner.nextDouble();
+            soma += salarios[i];
+        }
+
+        double media = soma / quantidade;
+
+        int acimaMedia = 0;
+        for (double salario : salarios) {
+            if (salario > media) {
+                acimaMedia++;
+            }
+        }
+
+        System.out.printf("\nMédia salarial: R$ %.2f\n", media);
+        System.out.println("Funcionários com salário acima da média: " + acimaMedia);
+    }
+    */
+
+    // 5.
+    
+    /*
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        double[] pesos = new double[10];
+        double menorPeso;
+        int posicaoMenor = 0;
+
+        // Leitura dos 10 pesos
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Peso da Pessoa " + (i + 1) + ": ");
+            pesos[i] = scanner.nextDouble();
+        }
+
+        menorPeso = pesos[0];
+
+        for (int i = 1; i < 10; i++) {
+            if (pesos[i] < menorPeso) {
+                menorPeso = pesos[i];
+                posicaoMenor = i;
+            }
+        }
+
+        System.out.printf("\nMenor peso: %.2f kg\n", menorPeso);
+        System.out.println("Posicao: " + posicaoMenor);
+
+    }
+    */
+    
+    // 6.
+    /*
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o número de termos da sequência de Fibonacci: ");
+        int n = scanner.nextInt();
+
+        if (n <= 0) {
+            System.out.println("Numero Invalido (negativo ou 0).");
+        } else {
+            System.out.println("\nSequência de Fibonacci com " + n + " termos:");
+
+            int primeiro = 0;
+            int segundo = 1;
+
+            for (int i = 1; i <= n; i++) {
+                System.out.print(primeiro + " ");
+
+                int proximo = primeiro + segundo;
+                primeiro = segundo;
+                segundo = proximo;
+            }
+        }
+    }
+    */
+    
+    // 7.
+    /*
+    public static int buscarNome(String[] nomes, String nomeBuscado) {
+        for (int i = 0; i < nomes.length; i++) {
+            if (nomes[i].equalsIgnoreCase(nomeBuscado)) {
+                return i;
+            }
+        }
+        return -1; 
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] nomes = new String[10];
+
+        System.out.println("Digite 10 nomes:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Nome " + (i + 1) + ": ");
+            nomes[i] = scanner.nextLine();
+        }
+
+        System.out.print("\nDigite o nome que deseja buscar: ");
+        String nomeBuscado = scanner.nextLine();
+
+        // Chama a função de busca
+        int posicao = buscarNome(nomes, nomeBuscado);
+
+        if (posicao != -1) {
+            System.out.println("\nO nome \"" + nomeBuscado + "\" foi encontrado na posição: " + posicao);
+        } else {
+            System.out.println("\nO nome \"" + nomeBuscado + "\" não foi encontrado no vetor.");
+        }
+    }
+    */
+    
+    // POO
+    
+    // 8.
+    
+    
+}
