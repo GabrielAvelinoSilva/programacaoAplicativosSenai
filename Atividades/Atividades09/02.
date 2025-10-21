@@ -1,0 +1,118 @@
+package com.mycompany.atividade09avelindophellippinho;
+
+import java.util.Scanner;
+import java.util.Calendar;
+
+class Acervo {
+    private int codigo;
+    private String titulo; 
+    private String autor;
+    private boolean emprestado;
+    
+    public Acervo(int codigo, String titulo, String autor) {
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.emprestado = false;
+    }
+    
+    public int getCodigo() {
+        return codigo;
+    }
+    
+    public String getTitulo() {
+        return titulo;
+    }
+    
+    public String getAutor() {
+        return autor;
+    }
+    
+    public boolean estaEmprestado() {
+        return emprestado;
+    }
+    
+    public void setEmprestado(boolean emorestado) {
+        this.emprestado = emprestado;
+    }
+    
+    public String Status() {
+        return emprestado ? "Emprestado" : "Disponível"; 
+    }
+            
+    @Override
+    public String toString() {
+        return codigo + "| \"" + titulo + "\" | " + autor + " | " + Status();
+    }
+}
+
+class Emprestimo {
+  private Acervo acervo;
+  private String leitor;
+  private int diaEmprestimo, mesEmprestimo, anoEmprestimo;
+  private int diaDevolucao, mesDevolucao, anoDevolucao;
+  
+  public Emprestimo(String leitor, Acervo acervo) {
+      this.leitor = leitor;
+      this.acervo = acervo;
+      Calendar hoje = Calendar.getInstance();
+      
+      diaEmprestimo = hoje.get(Calendar.DATE);
+      mesEmprestimo = hoje.get(Calendar.MONTH) + 1;
+      anoEmprestimo = hoje.get(Calendar.YEAR);
+      
+      calcularDevolucao(7);
+      
+  }
+  
+  private void calcularDevolucao(int diasUteis) {
+      Calendar data = Calendar.getInstance();
+      int adicionados = 0;
+      
+      while (adicionados < diasUteis) {
+          data.add(Calendar.DAY_OF_MONTH, 1);
+          int diaSemana = data.get(Calendar.DAY_OF_WEEK);
+          if (diaSemana != Calendar.SATURDAY && diaSemana != Calendar.SUNDAY) {
+              adicionados++;
+          }
+      }
+      
+      diaDevolucao = data.get(Calendar.DAY_OF_MONTH);
+      mesDevolucao = data.get(Calendar.MONTH) + 1;
+      anoDevolucao = data.get(Calendar.YEAR);
+  }
+  
+  public void exibirRecibo() {
+      
+  }
+  
+}
+
+public class Atv09_Biblioteca {
+    public static void main(String[] args) {
+        scanner scanner = new Scanner(System.in);
+        
+        int escolha;
+        do {
+            System.out.println("=== BIBLIOTECA ===");
+            System.out.println("1. Consultar Acervo");
+            System.out.println("2. Pegar Livro Emprestado");
+            System.out.println("3. Sair");
+
+            System.out.println("\nEscolha:");
+            escolha = scanner.nextInt();
+            
+            switch (escolha) {
+                case 1 -> consultarAcervo();
+                case 2 -> pegarEmprestado();
+                case 3 -> System.out.println("Saindo... ");
+            }
+            
+        } while (escolha != 3);
+        
+        System.out.println("Sistema Encerrado. Tchau!");
+        
+        
+        
+    }
+}
