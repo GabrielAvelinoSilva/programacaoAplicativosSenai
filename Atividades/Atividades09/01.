@@ -1,0 +1,289 @@
+// Classe Atividade09AvelinoeGabrielFelipe
+
+package atividade.agenda;
+
+public class Atividade09AvelinoeGabrielFelipe{
+    public static void main(String[] args) {
+        AgendaEletronica agenda = new AgendaEletronica();
+        agenda.menu();
+    }
+}
+
+// classe contato
+
+package atividade.agenda;
+
+public class Contato implements Comparable<Contato> {
+    private String nome;
+    private String telefone;
+    private String email;
+
+    public Contato(String nome, String telefone, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    // Getters e Setters
+    public String getNome() { return nome; }
+    public void setNome(String nome) { 
+        if (!nome.trim().isEmpty()) this.nome = nome; 
+    }
+
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { 
+        if (telefone.matches("\\d{10,11}")) this.telefone = telefone; 
+    }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { 
+        if (email.contains("@") && email.contains(".")) this.email = email; 
+    }
+
+    // Método para exibir contato formatado
+    public String exibir() {
+        return nome + " | " + telefone + " | " + email;
+    }
+
+    // Para ordenação por nome
+    @Override
+    public int compareTo(Contato outro) {
+        return this.nome.compareToIgnoreCase(outro.nome);
+    }
+}
+
+// classe agenda eletronica
+
+package atividade.agenda;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class AgendaEletronica {
+
+    private List<Contato> contatos;
+
+    public AgendaEletronica() {
+        contatos = new ArrayList<>();
+    }
+
+    public void menu() {
+        Scanner entrada = new Scanner(System.in);
+        int opcao = -1;
+
+        do {
+            System.out.println("\n=== AGENDA ELETRÔNICA ===");
+            System.out.println("1) Cadastrar contato");
+            System.out.println("2) Consultar agenda");
+            System.out.println("3) Editar contato");
+            System.out.println("4) Excluir contato");
+            System.out.println("5) Sair");
+            System.out.print("Opção: ");
+
+            try {
+                opcao = Integer.parseInt(entrada.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("❌ Entrada inválida! Digite apenas números.");
+                continue;
+            }
+
+            switch (opcao) {
+                case 1: cadastrarContato(); break;
+                case 2: consultarAgenda(); break;
+                case 3: editarContato(); break;
+                case 4: excluirContato(); break;
+                case 5: System.out.println("Saindo..."); break;
+                default: System.out.println("❌ Opção inválida!");
+            }
+
+        } while (opcao != 5);
+    }
+
+    private void cadastrarContato() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("=== CADASTRANDO ===");
+
+        try {
+            System.out.print("Nome: ");
+            String nome = entrada.nextLine().trim();
+            if (!Validador.validarNome(nome)) {
+                System.out.println(" Nome esta vazio!");
+                return;
+            }
+
+            System.out.print("Telefone (10-11 dígitos, apenas números): ");
+            String telefone = entrada.nextLine().trim();
+            if (!Validador.validarTelefone(telefone)) {
+                System.out.println(" Telefone inválido!");
+                return;
+            }
+
+            
+            for (Contato c : contatos) {
+                if (c.getTelefone().equals(telefone)) {
+                    System.out.println(" Ja existe um contato com esse telefone!");
+                    return;
+                }
+            }
+
+            System.out.print("E-mail: ");
+            String email = entrada.nextLine().trim();
+            if (!Validador.validarEmail(email)) {
+                System.out.println(" Email inválido!");
+                return;
+            }
+
+            contatos.add(new Contato(nome, telefone, email));
+            System.out.println(" Contato cadastrado com sucesso!");
+
+        } catch (Exception e) {
+            System.out.println(" Erro ao cadastrar contato: " + e.getMessage());
+        }
+    }
+
+    private void consultarAgenda() {
+        if (contatos.isEmpty()) {
+            System.out.println("Agenda esta vazia.");
+            return;
+        }
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Consutando");
+        System.out.println("Ordenar por: 1-Nome 2-Telefone 3-E-mail");
+        int opcao;
+        try {
+            opcao = Integer.parseInt(entrada.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Opção inválida, listando por nome.");
+            opcao = 1;
+        }
+
+        switch (opcao) {
+            case 1: Collections.sort(contatos); break;
+            case 2: contatos.sort((c1,c2) -> c1.getTelefone().compareTo(c2.getTelefone())); break;
+            case 3: contatos.sort((c1,c2) -> c1.getEmail().compareTo(c2.getEmail())); break;
+            default: Collections.sort(contatos);
+        }
+
+        int i = 1;
+        for (Contato c : contatos) {
+            System.out.println("# " + i++ + " | " + c.exibir());
+        }
+    }
+
+    private void editarContato() {
+        if (contatos.isEmpty()) {
+            System.out.println("Agenda vazia.");
+            return;
+        }
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("[EDITAR CONTATO]");
+        System.out.print("Informe o telefone do contato: ");
+        String telefone = entrada.nextLine().trim();
+
+        Contato contatoEditar = null;
+        for (Contato c : contatos) {
+            if (c.getTelefone().equals(telefone)) {
+                contatoEditar = c;
+                break;
+            }
+        }
+
+        if (contatoEditar == null) {
+            System.out.println(" Contato não encontrado!");
+            return;
+        }
+
+        System.out.print("Novo nome (enter para  manter): ");
+        String nome = entrada.nextLine().trim();
+        if (!nome.isEmpty() && Validador.validarNome(nome)) contatoEditar.setNome(nome);
+
+        System.out.print("Novo telefone (enter para  manter): ");
+        String novoTel = entrada.nextLine().trim();
+        if (!novoTel.isEmpty()) {
+            if (!Validador.validarTelefone(novoTel)) {
+                System.out.println(" Telefone inválido, mantendo antigo.");
+            } else {
+                
+                boolean existe = false;
+                for (Contato c : contatos) {
+                    if (c.getTelefone().equals(novoTel) && c != contatoEditar) {
+                        existe = true; break;
+                    }
+                }
+                if (existe) {
+                    System.out.println(" Telefone já existe, mantendo antigo.");
+                } else {
+                    contatoEditar.setTelefone(novoTel);
+                }
+            }
+        }
+
+        System.out.print("Novo e-mail (enter p/ manter): ");
+        String email = entrada.nextLine().trim();
+        if (!email.isEmpty()) {
+            if (Validador.validarEmail(email)) contatoEditar.setEmail(email);
+            else System.out.println(" E-mail inválido, mantendo antigo.");
+        }
+
+        System.out.println(" Contato foi atualizado com sucesso!");
+    }
+
+    private void excluirContato() {
+        if (contatos.isEmpty()) {
+            System.out.println("Agenda vazia.");
+            return;
+        }
+
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Excluindo o contato ");
+        System.out.print("Informe o telefone do contato: ");
+        String telefone = entrada.nextLine().trim();
+
+        Contato contatoExcluir = null;
+        for (Contato c : contatos) {
+            if (c.getTelefone().equals(telefone)) {
+                contatoExcluir = c;
+                break;
+            }
+        }
+
+        if (contatoExcluir == null) {
+            System.out.println(" Contato não foi  encontrado!");
+            return;
+        }
+
+        System.out.print("Confirmar exclusão? (S/N): ");
+        String conf = entrada.nextLine().trim().toUpperCase();
+        if (conf.equals("S")) {
+            contatos.remove(contatoExcluir);
+            System.out.println(" Contato excluído!");
+        } else {
+            System.out.println("Operação cancelada.");
+        }
+    }
+}
+
+// classe validador
+
+package atividade.agenda;
+
+public class Validador {
+    public static boolean validarTelefone(String telefone) {
+        return telefone.matches("\\d{10,11}");
+    }
+
+    public static boolean validarEmail(String email) {
+        return email.contains("@") && email.contains(".");
+    }
+
+    public static boolean validarNome(String nome) {
+        return !nome.trim().isEmpty();
+    }
+}
+
+
+
