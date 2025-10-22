@@ -1,0 +1,117 @@
+// Estacionamento.java
+
+package projetopraticoavelino;
+
+import java.util.Scanner;
+
+public class Estacionamento {
+
+    public static void main(String[] args) {
+        // Imports
+        Scanner scanner = new Scanner(System.in);
+        
+        // Outras Classes
+        
+        RegistrarVeiculo registrarVeiculo = new RegistrarVeiculo();
+        
+        // Código
+        
+        int escolha;  
+        do {
+            System.out.println("=== Estacionamento ===");
+            System.out.println("1. Registrar veículo em vaga");
+            System.out.println("2. Finalizar uso do veículo na vaga (calcular e pagar)");
+            System.out.println("3. Consultar disponibilidade de vagas");
+            System.out.println("4. Consultar saldo e histórico de pagamentos");
+            System.out.println("5. Encerrar  Sistema");
+            
+            System.out.print("\nEscolha: ");
+            escolha = scanner.nextInt();
+            
+            switch (escolha) {
+                case 1 -> registrarVeiculo.Veiculo();
+                case 2 -> System.out.println("");
+                case 3 -> System.out.println("");
+                case 4 -> System.out.println("");
+                case 5 -> System.out.println("Encerrando Sistema... ");
+                default -> System.out.println("Opção Inválida, Escolha de 1 a 5.");
+                
+            }
+            
+        } while (escolha != 5);
+        System.out.println("Sistema Encerrado, Tchau!");
+    }
+    
+}
+
+// RegistrarVeiculo.java
+
+package projetopraticoavelino;
+
+import java.util.Scanner;
+
+public class RegistrarVeiculo {
+    Scanner scanner = new Scanner(System.in);    
+    
+    public int tipoVeiculo, horaEntrada, minutoEntrada;
+    public String placaVeiculo, nomeCondutor, marcaVeiculo, modeloVeiculo, corVeiculo; 
+    
+    public int[] vagasCarros = {6, 7, 8, 9, 10};
+    public int[] vagasMotos = {1, 2, 3};
+    public int[] vagasCaminhoes = {4, 5};
+    
+    public void Veiculo() {
+        boolean verificadorErro = false;
+        
+        System.out.println("=== Tipo de Veículo ===");
+        System.out.println("Tipos: 1 - Carro | 2 - Moto | 3 - Caminhão/Caminhonete");
+        
+        System.out.print("\nEscolha: ");
+        tipoVeiculo = scanner.nextInt();
+        
+        if (tipoVeiculo > 3 || tipoVeiculo < 1) {
+            verificadorErro = true;
+        }
+        
+        System.out.print("Digite a placa do Veículo: ");
+        placaVeiculo = scanner.next();
+        
+        System.out.print("Digite o Nome do Condutor: ");
+        nomeCondutor = scanner.next();
+        
+        System.out.print("Digite a Marca do Veículo: ");
+        marcaVeiculo = scanner.next();
+        
+        System.out.print("Digite o modelo do Veículo: ");
+        modeloVeiculo = scanner.next();
+        
+        System.out.print("Digite a cor do Veículo: ");
+        corVeiculo = scanner.next();
+        
+        System.out.print("Digite a hora de Entrada (0-23): ");
+        horaEntrada = scanner.nextInt();
+        
+        if (horaEntrada > 23 || horaEntrada < 0) {
+            verificadorErro = true;
+        }
+        
+        System.out.print("Digite o minuto de Entrada (0-59): ");
+        minutoEntrada = scanner.nextInt();
+        
+        if (minutoEntrada > 59 || minutoEntrada < 0) {
+            verificadorErro = true;
+        }
+        
+        
+        if (verificadorErro) {
+            System.out.println("Erro na Verificação, Todos os dados estão certos?");
+        } else {
+            
+            if (tipoVeiculo == 1)
+            
+            System.out.printf("Veículo registrado com sucesso na vaga");
+        }
+        
+    }
+    
+}
