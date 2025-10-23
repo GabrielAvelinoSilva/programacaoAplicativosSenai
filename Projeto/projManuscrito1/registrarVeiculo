@@ -1,0 +1,28 @@
+package projetopraticoavelino;
+
+public class Veiculo {
+    public int codigo;
+    public String placa;
+    public String condutor;
+    public String marca;
+    public String modelo;
+    public String cor;
+    public int tipo; // 1-Carro, 2-Moto, 3-Caminhão
+    public int horaEntrada;
+    public int minutoEntrada;
+    public int vaga;
+    public boolean ativo = true;
+
+    public Veiculo(int codigo, String placa, String condutor, String marca, String modelo, String cor, int tipo, int horaEntrada, int minutoEntrada, int vaga) {
+        this.codigo = codigo;
+        this.placa = placa;
+        this.condutor = condutor;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.tipo = tipo;
+        this.horaEntrada = horaEntrada;
+        this.minutoEntrada = minutoEntrada;
+        this.vaga = vaga;
+    }
+}
