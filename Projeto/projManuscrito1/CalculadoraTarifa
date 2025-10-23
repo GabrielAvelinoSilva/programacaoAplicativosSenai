@@ -1,0 +1,31 @@
+package projetopraticoavelino;
+
+public class CalculadoraTarifa {
+
+    public static double calcularValor(int minutos, int tipo) {
+        double valor = 0;
+
+        switch (tipo) {
+            case 1 -> { // Carro
+                if (minutos <= 15) valor = 6;
+                else if (minutos <= 30) valor = 17;
+                else if (minutos <= 60) valor = 20;
+                else valor = 20 + ((minutos - 60) * 1.35);
+            }
+            case 2 -> { // Moto
+                if (minutos <= 15) valor = 3;
+                else if (minutos <= 30) valor = 7;
+                else if (minutos <= 60) valor = 10;
+                else valor = 10 + ((minutos - 60) * 1.00);
+            }
+            case 3 -> { // Caminhão
+                if (minutos <= 15) valor = 16;
+                else if (minutos <= 30) valor = 27;
+                else if (minutos <= 60) valor = 30;
+                else valor = 30 + ((minutos - 60) * 2.35);
+            }
+        }
+
+        return valor;
+    }
+}
