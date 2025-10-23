@@ -1,0 +1,42 @@
+package projetopraticoavelino;
+
+import java.util.Scanner;
+
+public class Estacionamento {
+
+    public static void main(String[] args) {
+        // Imports
+        Scanner scanner = new Scanner(System.in);
+
+        // Outra Classe
+        RegistrarVeiculo registrarVeiculo = new RegistrarVeiculo();
+
+        // Código
+
+        int escolha;
+        do {
+            System.out.println("\n=== projetopraticoavelino.Estacionamento ===");
+            System.out.println("1. Registrar veículo em vaga");
+            System.out.println("2. Finalizar uso do veículo na vaga (calcular e pagar)");
+            System.out.println("3. Consultar disponibilidade de vagas");
+            System.out.println("4. Consultar saldo e histórico de pagamentos");
+            System.out.println("5. Encerrar  Sistema");
+
+            System.out.print("\nEscolha: ");
+            escolha = scanner.nextInt();
+
+            switch (escolha) {
+                case 1 -> registrarVeiculo.registrar();
+                case 2 -> registrarVeiculo.finalizarUso();
+                case 3 -> registrarVeiculo.consultarVagas();
+                case 4 -> registrarVeiculo.consultarHistorico();
+                case 5 -> System.out.println("Encerrando Sistema... ");
+                default -> System.out.println("Opção Inválida, Escolha de 1 a 5.");
+
+            }
+
+        } while (escolha != 5);
+        System.out.println("Sistema Encerrado, Tchau!");
+    }
+
+}
