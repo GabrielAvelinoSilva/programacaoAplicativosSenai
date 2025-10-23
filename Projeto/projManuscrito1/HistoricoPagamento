@@ -1,0 +1,13 @@
+package projetopraticoavelino;
+
+public class HistoricoPagamento {
+    public int codigoVeiculo;
+    public double valorPago;
+    public String formaPagamento;
+
+    public HistoricoPagamento(int codigoVeiculo, double valorPago, String formaPagamento) {
+        this.codigoVeiculo = codigoVeiculo;
+        this.valorPago = valorPago;
+        this.formaPagamento = formaPagamento;
+    }
+}
