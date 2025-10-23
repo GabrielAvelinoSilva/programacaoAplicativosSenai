@@ -1,0 +1,176 @@
+package projetopraticoavelino;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class RegistrarVeiculo {
+    Scanner scanner = new Scanner(System.in);
+    ArrayList<Veiculo> veiculos = new ArrayList<>();
+    ArrayList<projetopraticoavelino.HistoricoPagamento> historico = new ArrayList<>();
+
+    int codigoAtual = 1;
+    double saldoTotal = 0;
+    final int TOTAL_VAGAS = 10;
+    Veiculo[] vagas = new Veiculo[TOTAL_VAGAS];
+
+    public void registrar() {
+        System.out.println("\n--- Registrar Veículo ---");
+        int tipo;
+        while (true) {
+            System.out.print("Tipo (1-Carro, 2-Moto, 3-Caminhão): ");
+            tipo = scanner.nextInt();
+            if (tipo >= 1 && tipo <= 3) break;
+            System.out.println("Tipo inválido. Digite 1, 2 ou 3.");
+        }
+
+        scanner.nextLine(); // limpar buffer
+        System.out.print("Placa: ");
+        String placa = scanner.nextLine();
+
+        System.out.print("Nome do condutor: ");
+        String condutor = scanner.nextLine();
+
+        System.out.print("Marca: ");
+        String marca = scanner.nextLine();
+
+        System.out.print("Modelo: ");
+        String modelo = scanner.nextLine();
+
+        System.out.print("Cor: ");
+        String cor = scanner.nextLine();
+
+        int horaEntrada, minutoEntrada;
+        while (true) {
+            System.out.print("Hora de entrada (0-23): ");
+            horaEntrada = scanner.nextInt();
+            System.out.print("Minuto de entrada (0-59): ");
+            minutoEntrada = scanner.nextInt();
+            if (horaEntrada >= 0 && horaEntrada <= 23 && minutoEntrada >= 0 && minutoEntrada <= 59) break;
+            System.out.println("Hora ou minuto inválidos. Tente novamente.");
+        }
+
+        // Buscar primeira vaga livre compatível
+        int vaga = encontrarVagaLivre(tipo);
+        if (vaga == -1) {
+            System.out.println("Não há vagas disponíveis para esse tipo de veículo.");
+            return;
+        }
+
+        Veiculo v = new Veiculo(codigoAtual++, placa, condutor, marca, modelo, cor, tipo, horaEntrada, minutoEntrada, vaga);
+        veiculos.add(v);
+        vagas[vaga - 1] = v;
+
+        System.out.printf("Veículo registrado com sucesso na vaga %d.%nCódigo do veículo: %d%n", vaga, v.codigo);
+    }
+
+    private int encontrarVagaLivre(int tipo) {
+        int inicio = (tipo == 2) ? 1 : (tipo == 3) ? 4 : 6;
+        int fim = (tipo == 2) ? 3 : (tipo == 3) ? 5 : 10;
+        for (int i = inicio; i <= fim; i++) {
+            if (vagas[i - 1] == null) return i;
+        }
+        return -1;
+    }
+
+    public void consultarVagas() {
+        System.out.println("\n--- Disponibilidade de Vagas ---");
+        int ocupadas = 0;
+        for (int i = 0; i < TOTAL_VAGAS; i++) {
+            String tipo = (i < 3) ? "2" : (i < 5) ? "3" : "1";
+            if (vagas[i] == null) {
+                System.out.printf("Vaga %d (Tipo: %s): LIVRE%n", i + 1, tipo);
+            } else {
+                System.out.printf("Vaga %d (Tipo: %s): OCUPADA - Placa: %s%n", i + 1, tipo, vagas[i].placa);
+                ocupadas++;
+            }
+        }
+        System.out.printf("Total ocupadas: %d | Livres: %d%n", ocupadas, TOTAL_VAGAS - ocupadas);
+    }
+
+    public void finalizarUso() {
+        System.out.println("\n--- Finalizar Uso ---");
+        listarVeiculosAtivos();
+        if (veiculos.isEmpty()) return;
+
+        System.out.print("Digite o código do veículo: ");
+        int codigo = scanner.nextInt();
+        Veiculo v = buscarPorCodigo(codigo);
+        if (v == null || !v.ativo) {
+            System.out.println("Código não encontrado. Tente novamente.");
+            return;
+        }
+
+        int horaSaida, minutoSaida;
+        while (true) {
+            System.out.print("Hora de saída (0-23): ");
+            horaSaida = scanner.nextInt();
+            System.out.print("Minuto de saída (0-59): ");
+            minutoSaida = scanner.nextInt();
+
+            int entradaMin = v.horaEntrada * 60 + v.minutoEntrada;
+            int saidaMin = horaSaida * 60 + minutoSaida;
+
+            if (horaSaida >= 0 && horaSaida <= 23 && minutoSaida >= 0 && minutoSaida <= 59 && saidaMin >= entradaMin) break;
+            System.out.println("Hora de saída não pode ser menor que a de entrada. Tente novamente.");
+        }
+
+        int minutosTotais = (horaSaida * 60 + minutoSaida) - (v.horaEntrada * 60 + v.minutoEntrada);
+        double valor = CalculadoraTarifa.calcularValor(minutosTotais, v.tipo);
+        System.out.printf("Tempo total: %d minutos | Valor a pagar: R$ %.2f%n", minutosTotais, valor);
+
+        System.out.println("--- Tipo de Pagamento ---");
+        System.out.println("1 - Dinheiro");
+        System.out.println("2 - PIX");
+        System.out.println("3 - Cartão");
+        System.out.print("Escolha: ");
+        int tipoPagamento = scanner.nextInt();
+        String forma = switch (tipoPagamento) {
+            case 1 -> "Dinheiro";
+            case 2 -> "PIX";
+            case 3 -> "Cartão";
+            default -> "Desconhecido";
+        };
+
+        historico.add(new projetopraticoavelino.HistoricoPagamento(v.codigo, valor, forma));
+        saldoTotal += valor;
+        vagas[v.vaga - 1] = null;
+        v.ativo = false;
+
+        System.out.println("Uso do veículo finalizado e vaga liberada.");
+    }
+
+    private void listarVeiculosAtivos() {
+        System.out.println("--- Veículos Estacionados ---");
+        boolean encontrou = false;
+        for (Veiculo v : veiculos) {
+            if (v.ativo) {
+                System.out.printf("Código: %d | Placa: %s | Vaga: %d%n", v.codigo, v.placa, v.vaga);
+                encontrou = true;
+            }
+        }
+        if (!encontrou) System.out.println("Nenhum veículo estacionado.");
+    }
+
+    private Veiculo buscarPorCodigo(int codigo) {
+        for (Veiculo v : veiculos) {
+            if (v.codigo == codigo) return v;
+        }
+        return null;
+    }
+
+    public void consultarHistorico() {
+        System.out.println("\n===== HISTÓRICO DE PAGAMENTOS =====");
+        if (historico.isEmpty()) {
+            System.out.println("Nenhum pagamento registrado ainda.");
+            return;
+        }
+        for (projetopraticoavelino.HistoricoPagamento h : historico) {
+            System.out.println("------------------------------");
+            System.out.printf("Código do Veículo: %d%n", h.codigoVeiculo);
+            System.out.printf("Valor Pago: R$ %.2f%n", h.valorPago);
+            System.out.printf("Forma de Pagamento: %s%n", h.formaPagamento);
+        }
+        System.out.println("------------------------------");
+        System.out.printf("SALDO TOTAL ARRECADADO: R$ %.2f%n", saldoTotal);
+    }
+}
